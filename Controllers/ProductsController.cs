@@ -29,5 +29,30 @@ namespace ADLVShop.Controllers
 
             return View("Details", product);
         }
+
+        public ActionResult Create()
+        {
+            return View("ProductForm");
+
+        }
+
+        public ActionResult Edit(int id)
+        {
+            ProductDAO productDAO = new ProductDAO();
+            ProductModel product = productDAO.FetchOne(id);
+            return View("ProductForm", product);
+
+        }
+        
+        [HttpPost]
+        public ActionResult ProcessCreate(ProductModel productModel) 
+        {
+            //save to the .db
+            ProductDAO productDAO = new ProductDAO();
+
+            productDAO.CreateOrUpdate(productModel);
+
+            return View("Details", productModel);
+        }
     }
 }

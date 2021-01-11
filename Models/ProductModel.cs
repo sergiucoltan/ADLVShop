@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,9 +10,17 @@ namespace ADLVShop.Models
     public class ProductModel
     {
         public int Id { get; set; }
+        [Required]
+        [DisplayName ("Product Name")]
         public string ProductName { get; set; }
+        [Required]
+        [DisplayName("Description")]
         public string ProductDescription { get; set; }
+        [Required]
+        [DisplayName("Product Price")]
         public double ProductPrice { get; set; }
+        [Required]
+        [DisplayName("Available items")]
         public int AvailableItems { get; set; }
 
 

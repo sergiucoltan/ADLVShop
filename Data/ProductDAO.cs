@@ -85,5 +85,58 @@ namespace ADLVShop.Data
          
         }
 
+        //create new
+
+        public int CreateOrUpdate(ProductModel productModel)
+        {
+            //if productmodel.id <= 1 then create
+
+            //if productmodel.id > 1 then update is meant.
+
+
+
+            //acces the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string sqlQuery = "";
+
+                if (productModel.Id <= 0)
+                {
+                    sqlQuery = "INSERT INTO dbo.Products Values(@ProductName, @ProductDescription, @ProductPrice, @AvailableItems)";
+                }
+                else
+                {
+                    //update
+                    sqlQuery = "UPDATE dbo.Products SET ProductName = @ProductName, ProductDescription = @ProductDescription, ProductPrice = @ProductPrice, AvailableItems = @AvailableItems WHERE Id = @Id)";
+                }
+                    
+                    
+           
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                command.Parameters.Add(@"Id", System.Data.SqlDbType.VarChar, 500).Value = productModel.Id;
+                command.Parameters.Add(@"ProductName", System.Data.SqlDbType.VarChar, 500).Value = productModel.ProductName;
+                command.Parameters.Add(@"ProductDescription", System.Data.SqlDbType.VarChar, 500).Value = productModel.ProductDescription;
+                command.Parameters.Add(@"ProductPrice", System.Data.SqlDbType.Decimal, 5).Value = productModel.ProductPrice;
+                command.Parameters.Add(@"AvailableItems", System.Data.SqlDbType.Int).Value = productModel.AvailableItems;
+
+                connection.Open();
+                int newID = command.ExecuteNonQuery();
+
+                
+                return newID;
+            }
+
+        }
+
+        //delete one
+
+        //update one
+
+        //search for name
+
+        //search for description
+
     }
 }
