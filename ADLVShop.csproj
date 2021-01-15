@@ -183,10 +183,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ADLVshop icon 2.png" />
+    <Content Include="Content\ADLVshop icon.png" />
+    <Content Include="Content\background photo 5.jpg" />
+    <Content Include="Content\background photo 6.jpg" />
+    <Content Include="Content\Bandana_ADLV.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Keychain_ADLV.jpg" />
+    <Content Include="Content\Matchbox_ADLV.jpg" />
+    <Content Include="Content\Mug_ADLV.jpg" />
+    <Content Include="Content\Tshirt_ADLV.jpg" />
+    <Content Include="Content\Vinyl_ADLV.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -204,8 +214,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Styles\assets\background photo 3.jpg" />
+    <Content Include="Views\Home\images\background photo 3.jpg" />
+    <Content Include="Styles\main.a3f694c0.css" />
     <Content Include="Styles\StyleSheet1.css" />
+    <Content Include="Content\background photo 4.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -243,9 +255,12 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\ProductForm.cshtml" />
+    <Content Include="Views\Products\SearchForm.cshtml" />
+    <Content Include="Views\Shared\MainPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Styles\assets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,4 +1,5 @@
 ﻿using ADLVShop.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -43,6 +44,102 @@ namespace ADLVShop.Data
                 }
             }
                 return returnList;
+        }
+
+        internal int Delete(int id)
+        {
+            //acces the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string sqlQuery = "DELETE FROM dbo.Products WHERE Id = @Id";
+
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                command.Parameters.Add(@"Id", System.Data.SqlDbType.VarChar, 500).Value = id;               
+
+                connection.Open();
+                int deletedID = command.ExecuteNonQuery();
+
+                return deletedID;
+            }
+        }
+
+        internal List<ProductModel> SearchForName(string searchPhrase)
+        {
+            List<ProductModel> returnList = new List<ProductModel>();
+
+            //acces the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string sqlQuery = "SELECT * from dbo.Products WHERE PRODUCT_NAME LIKE @searchForMe";
+
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                command.Parameters.Add("@searchForMe", System.Data.SqlDbType.NVarChar).Value = "%" + searchPhrase + "%";
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //create a new product object. Addit to the list to return.
+                        ProductModel product = new ProductModel();
+                        product.Id = reader.GetInt32(0);
+                        product.ProductName = reader.GetString(1);
+                        product.ProductDescription = reader.GetString(2);
+                        product.ProductPrice = (double)reader.GetDecimal(3);
+                        product.AvailableItems = reader.GetInt32(4);
+
+                        returnList.Add(product);
+                    }
+                }
+
+                return returnList;
+
+            }
+        }
+
+
+        internal List<ProductModel> SearchForDescription(string searchDescription)
+        {
+            List<ProductModel> returnList = new List<ProductModel>();
+
+            //acces the database
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string sqlQuery = "SELECT * from dbo.Products WHERE PRODUCT_DESCRIPTION LIKE @searchForMe";
+
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                command.Parameters.Add("@searchForMe", System.Data.SqlDbType.NVarChar).Value = "%" + searchDescription + "%";
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        //create a new product object. Addit to the list to return.
+                        ProductModel product = new ProductModel();
+                        product.Id = reader.GetInt32(0);
+                        product.ProductName = reader.GetString(1);
+                        product.ProductDescription = reader.GetString(2);
+                        product.ProductPrice = (double)reader.GetDecimal(3);
+                        product.AvailableItems = reader.GetInt32(4);
+
+                        returnList.Add(product);
+                    }
+                }
+
+                return returnList;
+
+            }
         }
 
         public ProductModel FetchOne(int Id)
